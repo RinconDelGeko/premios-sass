@@ -12,14 +12,15 @@
         <a class="nav-link" href="/user">Usuarios</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/nose">Premios</a>
+        <a class="nav-link" href="/trophy">Trofeos</a>
       </li>
       <li class="nav-item dropdown pull-right">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Perfil
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="/profile/usuario">Ver Perfil</a>
+          <a class="dropdown-item" href="/user/usuario">Ver Perfil</a>
+          <a class="dropdown-item" href="/profile/edit/usuario">Editar Perfil</a>
           <a class="dropdown-item" href="/profile/close">Cerrar Sesión</a>
         </div>
       </li>

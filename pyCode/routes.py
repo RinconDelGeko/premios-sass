@@ -3,6 +3,7 @@ from bottle.ext import sqlalchemy
 from sqlalchemy import create_engine
 from sqlalchemy import inspect
 
+import json
 
 from user import User
 
@@ -68,22 +69,27 @@ def getUser(name):
   
   
 #User
-
 @get('/user')
-def getUser(name):
+def getUser():
   return(generateTemplate('./web-page/user'))
-  
+
+@get('/user/<name>')
+def getUser(name):
+  return(generateTemplate('./web-page/user-page'))
   
   
 @get('/user/table-get-users')
 def getUser(db):
   test = db.query(User).all()
+  dictfinal = dict()
   listJson = []
   for i in test:
-    #data = i.toDict()
+    data = i.toDict()
     listJson.append(data)
     
-  return dict(data=listJson)
+  dictfinal['rows'] = listJson
+  dictfinal['total'] = 4
+  return dictfinal
   
 @route('/static/<filepath:path>')
 def server_static(filepath):

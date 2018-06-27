@@ -1,14 +1,24 @@
 from sqlalchemy import Column, Integer, String
+from sqlalchemy.ext.declarative import declarative_base
 
-class Archivement():
+Base = declarative_base()
+
+class Archivement(Base):
   __tablename__ = 'archivement'
   id = Column(Integer, primary_key=True)
-  nombreCompleto = Column('nombre_completo', String)
-  nombreUsuario = Column('nombre_usuario', String)
-  password = Column('pass', String)
-  score = Column('score', Integer)
+  name = Column('name', String)
+  des = Column('des', String)
+  image = Column('image', String)
 
   
   def __repr__(self):
-  return "<Entity('%d', '%s', '%s', '%s', '%d')>" % (self.id, self.nombreCompleto, self.nombreUsuario, self.password, self.score)
+  	return "<Entity('%d', '%s', '%s', '%s', '%d')>" % (self.id, self.nombreCompleto, self.nombreUsuario, self.password, self.score)
   
+  def toDict(self, removeAtr = []):
+    dictUser = vars(self)
+    dictUser.pop('_sa_instance_state', None)
+    dictUser.pop('image', None)
+    print(dictUser)
+    for i in removeAtr:
+      dictUser.pop(i, None)
+    return dictUser

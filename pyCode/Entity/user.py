@@ -15,8 +15,10 @@ class User(Base):
   def __repr__(self):
     return "<Entity('%d', '%s', '%s', '%s', '%d')>" % (self.id, self.nombreCompleto, self.nombreUsuario, self.password, self.score)
   
-  def toDict(self, removeAtr = ['_sa_instance_state', 'password']):
+  def toDict(self, removeAtr = []):
     dictUser = vars(self)
+    dictUser.pop('_sa_instance_state', None)
+    dictUser.pop('password', None)
     print(dictUser)
     for i in removeAtr:
       dictUser.pop(i, None)

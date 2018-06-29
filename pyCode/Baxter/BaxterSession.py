@@ -1,40 +1,37 @@
-import applicationConfig
 from bottle import request, redirect
 
 class BaxterSessionManager():
 
-	def __init__(self, configuration, dataOrigin = None):
-		self.configuration = configuration
-		self.
+  def __init__(self, configuration, dataOrigin = None):
+    self.configuration = configuration
 
-	def checkPermission(self, restFunction):
-		
-		appConfig = applicationConfig.baseConfiguration
-
-		requestPath = request.path
-
-		sessionId = request.get_cookie("sessionId", secret=appConfig.secretKey)
-
-		if sessionId:
+  def processPermission(self):
+    requestPath = request.path
+    print(requestPath)
+    """
+    sessionId = request.get_cookie("sessionId", secret=self.configuration.cookieKey)
+    if sessionId:
+      usuarioActual = appConfig.usersDict[sessionId]
 			
-			usuarioActual = appConfig.usersDict[sessionId]
-			
-			if usuarioActual != None and usuarioActual.checkPermission(requestPath):
-				#Puede usar la web
-				return restFunction(*args, **kwargs):
+      if usuarioActual != None and checkPermission(requestPath):
+        #Puede usar la web
+        return restFunction(*args, **kwargs)
 				
-			else:
-				#Necesita iniciar sesion
-				return '<p> Sin Acceso </p>'
-		else:
-			if userManager.unknownCheckPermission(requestPath):
-				print("true")
-			else:
-				print("false")
-				redirect("/login")
+      else:
+        #Necesita iniciar sesion
+        return '<p> Sin Acceso </p>'
+    else:
+      if unknownCheckPermission(requestPath):
+        print("true")
+      else:
+        print("false")
+        redirect("/login")
+    return restFunction(*args, **kwargs)
+    677"""
+  def unknownCheckPermission(variable):
+    return True
+  def checkPermission(variable):
+    return True
 
-		return restFunction(*args, **kwargs)
-		
-	def start(self):
-		
-		
+  def start(self):
+    print("start")

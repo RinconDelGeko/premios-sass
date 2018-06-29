@@ -1,22 +1,8 @@
 from bottle import get, template, redirect, route, static_file, install
-from bottle.ext import sqlalchemy
-from sqlalchemy import create_engine
-from sqlalchemy import inspect
 
 import json
 
 from user import User
-
-engine = create_engine('sqlite:///./sqlite/premios-sass.db', echo=True)
-
-pluginSql = sqlalchemy.Plugin(
-    engine, # SQLAlchemy engine created with create_engine function.
-    keyword='db', # Keyword used to inject session database in a route (default 'db').
-    commit=True, # If it is true, plugin commit changes after route is executed (default True).
-    use_kwargs=False # If it is true and keyword is not defined, plugin uses **kwargs argument to inject session database (default False).
-)
-
-install(pluginSql)
 
 def generateTemplate(returnTemplate):
   return template('./web-page/header') + template('./web-page/main-menu') + template(returnTemplate) + template('./web-page/footer')
@@ -80,7 +66,9 @@ def getUser(name):
   
 @get('/user/table-get-users')
 def getUser(db):
+  print("entra nates")
   test = db.query(User).all()
+  print("Entra")
   dictfinal = dict()
   listJson = []
   for i in test:
